@@ -1,11 +1,20 @@
+#!/usr/bin/env python
 import psycopg2
 
 database_name = "news"
 
 #Store queries into variables
-q1 = ("SELECT title, count(*) as num FROM articles, log WHERE articles.slug = substring(log.path, 10) GROUP BY title ORDER BY num DESC LIMIT 3;")
-q2 = ("SELECT authors.name, count(*) AS num FROM articles JOIN authors on articles.author = authors.id JOIN log on log.path LIKE concat('%', articles.slug) WHERE log.status LIKE '200 OK' GROUP BY authors.name ORDER BY num desc;")
-q3 = ("SELECT to_char(errors.date, 'Mon DD, YYYY'), round( cast(errors.percent as numeric), 3) FROM percent_error errors;")
+q1 = ("""SELECT title, count(*) as num FROM articles, log
+      WHERE articles.slug = substring(log.path, 10) 
+      GROUP BY title ORDER BY num DESC LIMIT 3;""")
+q2 = ("""SELECT authors.name, count(*) AS num
+      FROM articles
+      JOIN authors on articles.author = authors.id
+      JOIN log on articles.slug = substring(log.path, 10)
+      WHERE log.status LIKE '200 OK'
+      GROUP BY authors.name ORDER BY num desc;""")
+q3 = ("""SELECT to_char(errors.date, 'Mon DD, YYYY'),
+      round( cast(errors.percent as numeric), 3) FROM percent_error errors;""")
 
 # Store results
 q1_results = dict()
