@@ -17,8 +17,8 @@ q2_results['title'] = "2. Who are the most popular article authors of all time?"
 q2_results['ending'] = " views"
 
 q3_results = dict()
-q3_results['title'] = "On which days did more than 1% of requests lead to errors?"
-q3_results['ending'] = " %"
+q3_results['title'] = "3. On which days did more than 1% of requests lead to errors?"
+q3_results['ending'] = "%"
 
 
 # Get query results from databse and return them
