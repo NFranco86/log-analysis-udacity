@@ -12,6 +12,7 @@
 ### Setup
 1. Install VirtualBox and Vagrant
 2. Clone this repository
+3. Download the database from [here](http://http://mulligan.tech/newsdata.zip)
 3. Make sure vagrant is running by using the `vagrant up` command
 4. Then log into vagrant using `vagrant ssh`
 5. Load the data from the database using the command `psql -d news -f newsdata.sql`
